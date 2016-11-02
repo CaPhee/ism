@@ -45,21 +45,27 @@
                 </ul>
             </div>
 
-            <form role="form">
+            <form role="form" method="POST" action="{!! route('user.alert.postcreate') !!}">
+            {{csrf_field()}}
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <h3>Step 1</h3>
                         <p>Authorization</p>
                         <fieldset disabled>
 						    <div class="form-group">
-						      <label for="disabledTextInput">Disabled input</label>
-						      <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ Auth::user()->name }}">
+						      <label for="disabledTextInput">Account Create Alert</label>
+						      <input type="text" id="disabledTextInput" name="user_id" class="form-control" value="{{ Auth::user()->name }}">
 						    </div>
 						    <div class="form-group">
-						      <label for="disabledTextInput">Disabled input</label>
+						      <label for="disabledTextInput">Email</label>
 						      <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ Auth::user()->email }}">
 						    </div>
-						  </fieldset>
+						</fieldset>
+                            <input id="invisible_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}"">
+                            <div class="form-group">
+                                <label for="Type">Title</label>
+                                <input type="text" class="form-control" id="Type" name="type" placeholder="Type">
+                            </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
@@ -69,9 +75,9 @@
                         <p>Content of Alert</p>
                         <div class="form-group">
                         	<label for="Title">Title</label>
-	                        <input type="text" class="form-control" id="Title" placeholder="Title">
+	                        <input type="text" class="form-control" id="Title" name="title" placeholder="Title">
 	                        <label for="Title">Content</label>
-	                        <textarea class="form-control" rows="3"></textarea>
+	                        <textarea class="form-control" rows="3" id="Content" name="content"></textarea>
 	                    </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>

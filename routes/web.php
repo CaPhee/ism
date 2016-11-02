@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/logout',function(){
 	Auth::logout();
-	return redirect('/');
+	return redirect('/login');
 });
 
 Route::post('/test',function(){
@@ -35,7 +35,7 @@ Route::get('/home', 'HomeController@index');
 		Route::group(['prefix' => 'alert'],function(){
 			Route::get('list', ['as' => 'user.alert.list', 'uses' => 'AlertController@index']);
 			Route::get('create', ['as' => 'user.alert.create', 'uses' => 'AlertController@getCreate']);
-			Route::post('create', ['as' => 'user.alert.postcreate', 'uses' => 'AlertController@store']);
+			Route::post('create', ['as' => 'user.alert.postcreate', 'uses' => 'AlertController@postCreate']);
 			Route::get('show/{id}', ['as' => 'user.alert.show', 'uses' => 'AlertController@show']);
 			Route::get('edit/{id}', ['as' => 'user.alert.edit', 'uses' => 'AlertController@edit']);
 			Route::put('edit/{id}', ['as' => 'user.alert.update', 'uses' => 'AlertController@update']);
