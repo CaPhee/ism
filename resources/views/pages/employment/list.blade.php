@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="page-header">
-                <h1>List Alert</h1>
+                <h1>List Employement</h1>
             </div>
         </div>
         <div class="col-lg-3">
@@ -34,27 +34,28 @@
         <thead class="thead-inverse">
             <tr align="center">
                 <th>ID</th>
-                <th>Tiêu đề</th>
-                <th>Loại</th>
-                <th>Date</th>
-                <th>Chi Tiết</th>
+                <th>Employment_status</th>
+                <th>Hire_date</th>
+                <th>Worker_Comp_Code</th>
+                <th>Termination_date</th>
+                <th>Rehire_date</th>
+                <th>Last_review_date</th>
                 <th>Edit</th>
                 <th>Edit</th>
             </tr>
         </thead>
         <tbody>
             <?php  $stt =0?>
-            @foreach($alert as $item)
+            @foreach($emp as $item)
             <?php  $stt= $stt +1?>
             <tr class="odd gradeX" align="center">
                 <td>{!! $stt !!}</td>
-                <td>{!! $item["title"] !!}</td>
-                <td>{!! $item["type"] !!}</td>
-                <td>
-                    <?php
-                        echo \Carbon\Carbon::createFromTimeStamp(strtotime($item['created_at']))->diffForHumans()
-                    ?>
-                </td>
+                <td>{!! $item["Employment_Status"] !!}</td>
+                <td>{!! $item["Hire_Date"] !!}</td>
+                <td>{!! $item["Workers_Comp_Code"] !!}</td>
+                <td>{!! $item["Termination_Date"] !!}</td>
+                <td>{!! $item["Rehire_Date"] !!}</td>
+                <td>{!! $item["Last_Review_Date"] !!}</td>
                 <td>
                     @if(Auth::user()->level <= 3)
                     <a href="{!! route('user.alert.detail',$item["id"]) !!}">Details</a>

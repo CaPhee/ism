@@ -66,13 +66,14 @@ return [
             'engine' => null,
         ],
         'sqlsrv' => [
-            'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
+            'driver'    => 'sqlsrv',
+            'host'      => env('DB_SQLSV_HOST','localhost'),
+            'port'      => env('DB_SQLSV_PORT'),
+            'database'  => env('DB_SQLSV_DATABASE'),
+            'username'  => env('DB_SQLSV_USERNAME'),
+            'password'  => env('DB_SQLSV_PASSWORD'),
+            'charset'   => 'utf8',
+            'prefix'    => '',
         ],
 
         'pgsql' => [

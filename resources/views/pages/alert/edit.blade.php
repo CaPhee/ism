@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Create Alert')
+@section('title', 'Edit Alert')
 @section('css')
-	<link rel="stylesheet" href="{{ URL::asset('public/css/alert.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('public/css/alert.css') }}">
 @endsection
 @section('content')
 <div class="container">
@@ -45,8 +45,9 @@
                 </ul>
             </div>
 
-            <form role="form" method="POST" action="{!! route('user.alert.postcreate') !!}">
+            <form role="form" method="POST" action="{!! route('user.alert.update',$alert['id']) !!}" >
             {{csrf_field()}}
+            <input type="hidden" value="PUT" name="_method">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <h3>Step 1</h3>
@@ -63,7 +64,7 @@
 						</fieldset>
                             <div class="form-group">
                                 <label for="Type">Type Alert</label>
-                                <input type="text" class="form-control" id="Type" name="type" placeholder="Type">
+                                <input type="text" class="form-control" id="Type" name="type" placeholder="Type" value="{{ $alert['type'] }}">
                             </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
@@ -74,9 +75,9 @@
                         <p>Content of Alert</p>
                         <div class="form-group">
                         	<label for="Title">Title</label>
-	                        <input type="text" class="form-control" id="Title" name="title" placeholder="Title">
+	                        <input type="text" class="form-control" id="Title" name="title" value="{{ $alert['title'] }}">
 	                        <label for="Title">Content</label>
-	                        <textarea class="form-control" rows="3" id="Content" name="content"></textarea>
+	                        <textarea class="form-control" rows="3" id="Content" name="content" >{{ $alert['content'] }}</textarea>
 	                    </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
@@ -85,7 +86,7 @@
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Step 3</h3>
-                        <p>Image details</p>                        
+                        <p>Image details</p>
                         <div class="form-group">
                             <label for="Role">Send to</label>
                             <select name="role" id="" class="selectpicker" data-live-search="true">
@@ -116,7 +117,6 @@
 </div>
 
 @endsection
-
 @section('js')
     <script src="{{ URL::asset('public/js/alert.js') }}"></script>
 	<script src="{{ URL::asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>

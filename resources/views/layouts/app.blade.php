@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ URL::asset('public/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
     @section('css')
 
     @show
@@ -44,8 +45,27 @@
                     </a>
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ url('/home') }}">DashBoard</a></li>
-                    <li><a href="#">Employee <span class="caret"></span></a></li>
-                    <li><a href="#">Payroll <span class="caret"></span></a></li>
+
+                    <li>
+                        <a data-toggle="dropdown" href="">Employee<span class="caret"></span></a>                       
+                          <ul class="dropdown-menu">
+                              <li><a href="{{ url('/user/employee/list') }}">Employeement</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#">Separated link</a></li>
+                          </ul>                        
+                    </li>
+                    <li>
+                        <a data-toggle="dropdown" href="">Payroll <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#">Separated link</a></li>
+                        </ul>    
+                    </li>
                     <li><a href="{{ url('/user/alert/list')}}">Alert</a></li>
                   </ul>
 
@@ -104,6 +124,11 @@
 
     <!-- Scripts -->
     <script src="{{ URL::asset('public/js/app.js') }}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/i18n/defaults-*.min.js"></script>
     @section('js')
 
     @show
