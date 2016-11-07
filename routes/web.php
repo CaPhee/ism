@@ -24,8 +24,8 @@ Route::get('/logout','Auth\AuthController@logout');
 
 
 Route::get('/db', function()
-{
-  	
+{	
+  	return DB::select('select database();');
 });
 
 Route::get('test',function(){
@@ -38,7 +38,7 @@ Route::get('test',function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home','HomeController@index');
 
 	Route::group(['prefix' => 'user','middleware'=> 'auth'], function(){
 
@@ -63,6 +63,17 @@ Route::get('/home', 'HomeController@index');
 			Route::get('edit/{id}', ['as' => 'user.employee.edit', 'uses' => 'EmployeeController@edit']);
 			Route::put('edit/{id}', ['as' => 'user.employee.update', 'uses' => 'EmployeeController@update']);
 			Route::delete('delete/{id}' ,['as' => 'user.employee.destroy', 'uses' => 'EmployeeController@destroy']);
+
+		});
+
+		Route::group(['prefix' => 'payroll'],function(){
+			Route::get('list', ['as' => 'user.payroll.list', 'uses' => 'PayrollController@index']);
+			Route::get('detail/{id}', ['as' => 'user.payroll.detail', 'uses' => 'PayrollController@detail']);
+			Route::get('create', ['as' => 'user.payroll.create', 'uses' => 'PayrollController@getCreate']);
+			Route::post('create', ['as' => 'user.payroll.postcreate', 'uses' => 'PayrollController@postCreate']);
+			Route::get('edit/{id}', ['as' => 'user.payroll.edit', 'uses' => 'PayrollController@edit']);
+			Route::put('edit/{id}', ['as' => 'user.payroll.update', 'uses' => 'PayrollController@update']);
+			Route::delete('delete/{id}' ,['as' => 'user.payroll.destroy', 'uses' => 'PayrollController@destroy']);
 
 		});
 

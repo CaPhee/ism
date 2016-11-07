@@ -30,16 +30,16 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-    <table class="table table-hover" id="table">
-        <thead class="thead-inverse">
-            <tr align="center">
+    <table  class="table table-hover" id="table">
+        <thead class="thead-inverse" >
+            <tr>
                 <th>ID</th>
-                <th>Tiêu đề</th>
-                <th>Loại</th>
-                <th>Date</th>
-                <th>Chi Tiết</th>
-                <th>Edit</th>
-                <th>Edit</th>
+                <th style="text-align: center;" class="col-md-5">Tiêu đề</th>
+                <th style="text-align: center;" class="col-md-2">Loại</th>
+                <th style="text-align: center;">Date</th>
+                <th style="text-align: center;">Chi Tiết</th>
+                <th style="text-align: center;">Edit</th>
+                <th style="text-align: center;">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -57,17 +57,31 @@
                 </td>
                 <td>
                     @if(Auth::user()->level <= 3)
-                    <a href="{!! route('user.alert.detail',$item["id"]) !!}">Details</a>
+                    <form action="{!! route('user.alert.detail',$item["id"]) !!}" method="POST" >
+                      {{ csrf_field() }}
+                      <input type="hidden" value="GET" name="_method">
+                      <input type="submit" class="btn btn-link" value="Details">
+                    </form>
                     @endif
                 </td>
-                <td class="center">
+                <td >
                     @if(Auth::user()->level <= 2)
-                    <i class="fa fa-pencil fa-fw"></i> <a href="{!! route('user.alert.edit', $item['id']) !!}">Edit</a>
+                    <form action="{!! route('user.alert.edit',$item['id']) !!}" method="POST">
+                      {{ csrf_field() }}
+                      <input type="hidden" value="GET" name="_method">
+                      <i class="fa fa-pencil  fa-fw"></i>
+                      <input type="submit" class="btn btn-link" value="Edit">
+                    </form>
                     @endif 
                 </td>
-                <td class="center">
-                @if(Auth::user()->level <= 1)                    
-                    <i class="fa fa-trash-o  fa-fw"></i><a href=""> Delete</a>
+                <td>
+                @if(Auth::user()->level <= 1)   
+                    <form action="{!! route('user.alert.destroy',$item['id']) !!}" method="POST">
+                      {{ csrf_field() }}
+                      <input type="hidden" value="DELETE" name="_method">
+                      <i class="fa fa-trash-o  fa-fw"></i>
+                      <input type="submit" class="btn btn-link" value="Delete">
+                    </form>
                 @endif
                 </td>
             </tr>

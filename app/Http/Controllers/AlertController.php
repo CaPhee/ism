@@ -58,8 +58,7 @@ class AlertController extends Controller
     }
 
     public function destroy($id){
-        $alert = Alert::findOrFail($id)->toArray();
-        $alert->delete($id);
+        Alert::where('id',$id)->delete();
         return redirect()->route('user.alert.list')->with('success','Delete successfully');
     }
 }

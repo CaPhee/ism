@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    protected $table = 'persons';
+	protected $connection = 'sqlsrv';
 
-    protected $fillable =['name','age','address','phone','sex','hireday','userid'];
+    public $timestamps = false;
+
+    protected $table = 'Employment';
+
+   // protected $fillable =['name','age','address','phone','sex','hireday','userid'];
 
     public function user(){
     	return $this->hasOne('App\User');
     }
+
+    
 }

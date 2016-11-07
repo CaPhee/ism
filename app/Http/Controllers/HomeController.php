@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Payroll;
+use App\Person;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $year = date('Y');
+        $month = 5;
+
+        $countPerson = Person::whereYear('Hire_Date',$year)->whereMonth('Hire_Date', $month)->count();
+        $sumBenefit = Payroll::sum('Pay Amount');
+        $totalearning = $sumBenefit/$countPerson;
+        return view('home',['totalearning'=>$totalearning]);
     }
 }

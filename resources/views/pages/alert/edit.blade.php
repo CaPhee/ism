@@ -46,7 +46,8 @@
             </div>
 
             <form role="form" method="POST" action="{!! route('user.alert.update',$alert['id']) !!}" >
-            {{csrf_field()}}
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" value="PUT" name="_method">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
